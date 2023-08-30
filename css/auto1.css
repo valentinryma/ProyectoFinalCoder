@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0px 290px;
+}
+
+.vehicle-details {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.vehicle-image {
+    text-align: center;
+}
+
+.vehicle-image img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+    border-radius: 0.5rem;
+}
+
+.basic-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.basic-info p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+
+
+/* SIDEBAR */
+
+.sidebar {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    width: 25%;
+    border: 1px solid #e9e9e9;
+    border-radius: 0.5rem;
+    padding-inline-end: 1rem;
+    padding-inline-start: 1rem;
+    padding-block-start: 1.5rem;
+}
+
+
+
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sidebar p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.sidebar strong {
+    font-weight: bold;
+}
+
+
+/* Campos */
+.km {
+    text-align: left;
+}
+
+.sidebar .precio {
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+
+}
+
+/* Info Basica Vehiculo*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+
+.grid-item {
+    border-bottom: 1px solid #e9e9e9;
+    padding: 10px;
+    text-align: center;
+}
+
+.grid-item p {
+    text-align: left;
+}
+
+.name {
+    color: #5b5b5b;
+}
+
+.description {
+    color: #333;
+}
+
+.heading-2 {
+    color: #333;
+}
+
+
+.compra-button {
+    background-color: rgb(1, 2, 5);
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid rgb(1, 2, 5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 100%;
+
+}
+
+.compra-button:hover {
+    background-color: rgb(83, 84, 87);
+    border-color: rgb(83, 84, 87);
+}
+
+.address,
+.id-vehiculo {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.address p,
+.id-vehiculo h2 {
+    color: rgb(1, 2, 5);
+    font-size: 16px;
+    font-weight: lighter;
+
+}
+
+.address h2,
+.id-vehiculo p {
+    color: #000;
+    margin: 0px;
+}
+
+.id-vehiculo p {
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+}

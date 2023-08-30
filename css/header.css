@@ -1,0 +1,64 @@
+/* Estilos para el encabezado */
+.header {
+    background-color: #212529;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.logo {
+    width: 280px;
+    display: flex;
+}
+
+.search-bar {
+    max-width: 75%;
+    width: 800px;
+    display: flex;
+    
+}
+
+.search-input {
+    flex: 1;
+    padding: 5px;
+}
+
+.search-button {
+    background-color: #c32324;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;   
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 40%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.user-menu {
+    display: none;
+    position: absolute;
+   
+    right: 100px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    z-index: 1;
+}
+
+.user:hover .user-menu {
+    display: block;
+}

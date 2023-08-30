@@ -1,0 +1,26 @@
+/* Estilos para los títulos de las categorías de filtros */
+.category-title {
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    margin: 7px;
+}
+
+.category-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.category-title.open + .category-content {
+    display: block;
+}
+
+.number-input {
+    width: 50px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.number-divider {
+    margin-right: 5px;
+}
