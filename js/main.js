@@ -1,95 +1,122 @@
-class Vehiculo {
-    static contadorVehiculos = 0;
-    constructor(marca, modelo, traccion, hp, anio, precio, estado) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.traccion = traccion;
-        this.anio = anio;
-        this.hp = hp;
-        this.estado = estado;
-        this.precio = precio;
-        // Asigna automaticamente e incrementalmente el id cada vez que sea crea un nuevo objeto
-        this.id = ++Vehiculo.contadorVehiculos;
-    }
-    mostrarVehiculo() {
-        let texto =
-            (
-                '-- MOSTRANDO VEHICULO --' + '\n' +
-                'Id Vehiculo: ' + this.id + '\n' +
-                'Marca: ' + this.marca + '\n' +
-                'Modelo: ' + this.modelo + '\n' +
-                'Traccion: ' + this.traccion + '\n' +
-                'Anio: ' + this.anio + '\n' +
-                'Hp: ' + this.hp + '\n' +
-                'Estado: ' + this.estado + '\n' +
-                'Precio: ' + '$' + this.precio + '\n'
-            );
-        alert(texto);
+/*
+// Uso de date
+let hoy = new Date().getDay();
+const dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+alert(`Hoy es ${dias[hoy - 1]}`);
+*/
+
+
+
+
+//? DOM - Pagina Principal
+// Renderizado de los Productos.
+const seccionProductos = document.getElementById('products');
+const btnAgregar = document.getElementById('agregar');
+const btnLimpiarFiltros = document.getElementById('clearFiltersButton')
+
+btnLimpiarFiltros.addEventListener('click', () => {
+    renderizar(listaVehiculos);
+    console.log('renderizando...')
+})
+
+// Renderiza todos los vehiculos que esten en el Array ("stock");
+function renderizar(listaVehiculos) {
+    seccionProductos.innerHTML = '';  // Limpia los productos previamente.
+    for (const vehiculo of listaVehiculos) {
+        seccionProductos.innerHTML += `
+        <div class="product" id="${vehiculo.id}">
+            <a href="auto1.html">
+              <img
+                src="${vehiculo.foto}"
+                alt="Producto ${vehiculo.marca} ${vehiculo.modelo}"
+                class="product-image"
+              />
+                <h3>$${vehiculo.precio}</h3>
+                <p>${vehiculo.marca} ${vehiculo.modelo}</p>
+                <p>${vehiculo.hp} hp</p>
+                <p>${vehiculo.estado} <small class="text-body-secondary">${vehiculo.km}km </small></p>
+            </a>
+        </div>
+        `;
     }
 }
-const listaVehiculos = [];
 
-//* TEST
-// Para probar el funcionamiento de los filtros...
-const v1 = new Vehiculo('BMW', 'E36', 'Trasera', 196, 1996, 15000, 'Usado');
-const v2 = new Vehiculo('Honda', 'Civic', 'Delantera', 134, 1998, 12000, 'Usado');
-const v3 = new Vehiculo('Ford', 'Fiesta', 'Delantera', 100, 2008, 3750, 'Usado');
-const v4 = new Vehiculo('Ford', '150', 'Trasera', 245, 1985, 850, 'Usado');
-const v5 = new Vehiculo('Nissan', 'Kicks', 'Delantera', 80, 2019, 5000, 'Usado');
-const v6 = new Vehiculo('Toyota', 'Etios', 'Delantera', 96, 2023, 7500, 'Nuevo');
-const v7 = new Vehiculo('Jeep', 'Commander', 'Trasera', 200, 2022, 10000, 'Nuevo');
-listaVehiculos.push(v1, v2, v3, v4, v5, v6, v7)
+// Limpiar Pantalla -> Limpia la pantalla para vovler a renderizar con los nuevos vehiculos cargados;
+function limpiar() {
+    seccionProductos.innerHTML = '';
+}
+
+// Carga por defecto los vehiculos en stock
+renderizar(listaVehiculos);
+
+
+
+// ----------------------------------------- Fin DOM ->
 
 //? FUNCIONES FILTRO ---------------------------->
-const filtroConfig = () => {
-    const mensaje0 = '\nIngrese 0 para no aplicar el filtro en el campo.';
-    alert('-- SETEAR FILTROS --' + mensaje0);
-    let marca = prompt('Ingrese la Marca: ' + mensaje0);
-    let modelo = prompt('Ingrese el modelo: ' + mensaje0);
-    let traccion = prompt('Ingrese el tipo de Traccion: ' + mensaje0);
-    let hp = parseInt(prompt('Ingrese los HP: '+ mensaje0));
-    let anio = parseInt(prompt('Ingrese el Año: '+ mensaje0));
-    let precioMin = parseFloat(prompt('Ingrese el precio Minimo: $' + mensaje0));
-    let precioMax = parseFloat(prompt('Ingrese el precio Maximo: $' + mensaje0));
-    let estado = prompt('Ingrese el Estado: ' + mensaje0);
-    let configFiltro = [marca, modelo, traccion, hp, anio, precioMin, precioMax, estado];
-    return configFiltro;
+const configFiltro = () => {
+    alert(' -- Configurar Filtro -- \n Presione [ENTER] para no aplicar el campo en la busqueda... ')
+    marca = prompt('Ingrese la Marca: ');
+    modelo = prompt('Ingrese el Modelo: ');
+    traccion = prompt('Ingrese el tipo de Tracción: \nTrasera \nDelantera \nTotal');
+    anio = prompt('Ingrese el Año: ');
+    precioMax = prompt('Ingrese el precio Máximo: ');
+    precioMin = prompt('Ingrese el precio Mínimo: ');
+    estado = prompt('Ingrese el estado: \nNuevo \nUsado - Como nuevo \nUsado - Buen estado \nUsado - Aceptable');
+
+    const filtro = {
+        marca: marca.toLowerCase(),
+        modelo: modelo.toLowerCase(),
+        traccion: traccion.toLowerCase(),
+        anio: anio.toLowerCase(),
+        precioMax: precioMax.toLowerCase(),
+        precioMin: precioMin.toLowerCase(),
+        estado: estado.toLowerCase()
+    };
+
+
+    console.table(filtro);
+    alert('Filtros establecidos con exito...');
+
+    // Limpia la pantalla principal, para que cuando presiones la opcion "2 - buscar" y luego "s - salir" y "s-salir" nuevamente, 
+    // se aplique el filtro efectivaemente en la pagina (DOM)
+    seccionProductos.innerHTML = '';
+    return filtro;
 }
 
-const filtroVer = (configFiltro) => {
-    let texto =
-        (
-            '-- MOSTRANDO FILTROS --' + '\n' +
-            'Marca: ' + configFiltro[0] + '\n' +
-            'Modelo: ' + configFiltro[1] + '\n' +
-            'Traccion: ' + configFiltro[2] + '\n' +
-            'Hp: ' + configFiltro[3] + '\n' +
-            'Anio: ' + configFiltro[4] + '\n' +
-            'Precio Minimo: ' + '$' + configFiltro[5] + '\n' +
-            'Precio Maximo: ' + '$' + configFiltro[6] + '\n' +
-            'Estado: ' + configFiltro[7] + '\n'
+function filtrar(filtros = {}) {
+    console.log(filtros);
+    if (Object.keys(filtros).length === 0) {
+        // Si los filtros estan vacios, retorna todos los vehiculos
+        console.table(listaVehiculos);
+        return listaVehiculos;
+    }
+    const vehiculosFiltrados = listaVehiculos.filter(vehiculo => {
+        return (
+            (filtros.marca === '' || vehiculo.marca.toLowerCase().includes(filtros.marca.toLowerCase())) &&
+            (filtros.modelo === '' || vehiculo.modelo.toLowerCase().includes(filtros.modelo.toLowerCase())) &&
+            (filtros.traccion === '' || vehiculo.traccion.toLowerCase().includes(filtros.traccion.toLowerCase())) &&
+            (filtros.anio === '' || parseInt(vehiculo.anio) >= parseInt(filtros.anio)) &&
+            (filtros.estado === '' || vehiculo.estado.toLowerCase().includes(filtros.estado.toLowerCase())) &&
+            (filtros.precioMax === '' || parseInt(vehiculo.precio) <= parseInt(filtros.precioMax)) &&
+            (filtros.precioMin === '' || parseInt(vehiculo.precio) >= parseInt(filtros.precioMin))
         );
-    alert(texto);
+    });
+    console.table(vehiculosFiltrados);
+
+    // Muestra los vehiculos filtrados en pantalla (Tenes que salir con s-salir, de los dos menus para que se muestre).s
+    renderizar(vehiculosFiltrados);
+
 }
 
-const filtroBuscar = (configFiltro, listaVehiculos) => {
-    configFiltroDefault = ['0', '0', '0', '0', '0', '0', '0', '0'];
-    alert('-- RESULTADOS --');
-    console.log(configFiltro + ' \n' + configFiltroDefault);
-    if (configFiltro != configFiltroDefault) {
-        for (const vehiculo of listaVehiculos) {
-            if (
-                (vehiculo.marca.toLowerCase() == configFiltro[0].toLowerCase() | configFiltro[0] == '0') &&
-                (vehiculo.modelo.toLowerCase() == configFiltro[1].toLowerCase() | configFiltro[1] == '0') &&
-                (vehiculo.traccion.toLowerCase() == configFiltro[2].toLowerCase() | configFiltro[2] == '0') &&
-                (vehiculo.hp >= configFiltro[3] - 60 && vehiculo.hp <= configFiltro[3] + 60 | configFiltro[3] == '0') &&
-                (vehiculo.anio == configFiltro[4] | configFiltro[4] == '0') &&
-                (vehiculo.precio >= configFiltro[5] && vehiculo.precio <= configFiltro[6] | configFiltro[5] == '0' | configFiltro[6] == '0') &&
-                (vehiculo.estado.toLowerCase() == configFiltro[7] | configFiltro[7] == '0')
-            ) {
-                vehiculo.mostrarVehiculo();
-            }
-        }
+
+const verFiltros = (filtros) => {
+    // Muestra los filtros que estan activos.
+    console.log(' - FILTROS ACTIVOS -');
+    if (filtros == undefined) {
+        console.log('No hay filtros aplicados');
+    } else {
+        console.table(filtros);
     }
 }
 // FIN FUNCIONES FILTRO <!---------------------------
@@ -104,9 +131,13 @@ const cargarVehiculo = () => {
     let anio = parseInt(prompt('Ingrese el Año: '));
     let precio = parseFloat(prompt('Ingrese el precio: $'));
     let estado = prompt('Ingrese el Estado: ');
+    let km = prompt('Ingrese los Km: ');
+    let foto = prompt('Ingrese la url de la imagen: ');
 
-    const vehiculo = new Vehiculo(marca, modelo, traccion, hp, anio, precio, estado);
+    const vehiculo = new Vehiculo(marca, modelo, traccion, hp, anio, precio, estado, km, foto);
     listaVehiculos.push(vehiculo); // Agregamos a la lista total de Vehiculos.
+    limpiar();
+    renderizar(listaVehiculos);
     console.log('\n');
     return vehiculo;
 }
@@ -115,8 +146,8 @@ const buscarVehiculoId = (listaVehiculos) => {
     encontrado = false;
     alert('-- BUSCAR VEHICULO --');
     let id = parseInt(prompt('Ingrese el ID del vehiculo'));
-    const resultadoBusquedaId = listaVehiculos.find( vehiculo => vehiculo.id === id);
-    if (resultadoBusquedaId == undefined){
+    const resultadoBusquedaId = listaVehiculos.find(vehiculo => vehiculo.id === id);
+    if (resultadoBusquedaId == undefined) {
         alert('Ningun vehiculo con ID: ' + "'" + id + "'");
     } else {
         resultadoBusquedaId.mostrarVehiculo();
@@ -124,37 +155,40 @@ const buscarVehiculoId = (listaVehiculos) => {
 }
 
 
-const filtrarVehiculo = (listaVehiculos) => {
-    configFiltro = ['0', '0', '0', '0', '0', '0', '0', '0']; // Config default
+const filtrarVehiculos = () => {
+    let filtros;
     const mensaje =
         (
-            '-- FILTRAR VEHICULOS MENU --' + '\n' +
-            '1 - Configurar Filtros' + '\n' +
-            '2 - Ver Filtros Activos ' + '\n' +
-            '3 - Buscar' + '\n' +
+            '-- FILTRAR VEHICULOS --' + '\n' +
+            '1 - Configurar filtro' + '\n' +
+            '2 - Buscar ' + '\n' +
+            '3 - Ver filtros activos ' + '\n' +
             'S - Salir'
         );
 
-    let opcion = (prompt(mensaje)).toLocaleLowerCase();
-    while (opcion != 's') {
+
+    let opcion = prompt(mensaje);
+    while (opcion.toLowerCase() != 's') {
         switch (opcion) {
             case '1':
-                configFiltro = filtroConfig();
+                filtros = configFiltro();
                 break;
             case '2':
-                filtroVer(configFiltro);
+                filtrar(filtros);
                 break;
             case '3':
-                filtroBuscar(configFiltro, listaVehiculos);
-                break;
+                verFiltros(filtros);
             default:
                 break;
         }
-        opcion = (prompt(mensaje)).toLocaleLowerCase();
+        opcion = (prompt(mensaje));
     }
+
+
+
 }
 
-const mostrarTodosLosVehiculos = (listaVehiculos) => {
+const mostrarTodosLosVehiculos = () => {
     if (listaVehiculos.length != 0) {
         let todosLosVehiculos = '-- LISTANDO TODOS LOS VEHICULOS --\n';
         for (const vehiculo of listaVehiculos) {
@@ -191,8 +225,8 @@ const mensaje =
     );
 
 
-let opcion = (prompt(mensaje)).toLocaleLowerCase();
-while (opcion != 's') {
+let opcion = (prompt(mensaje));
+while (opcion.toLowerCase() != 's') {
     switch (opcion) {
         case '1':
             vehiculo = cargarVehiculo();
@@ -211,13 +245,13 @@ while (opcion != 's') {
             }
             break;
         case '3':
-            filtrarVehiculo(listaVehiculos);
+            filtrarVehiculos();
             break;
         case '5':
-            mostrarTodosLosVehiculos(listaVehiculos);
+            mostrarTodosLosVehiculos();
             break;
         default:
             break;
     }
-    opcion = (prompt(mensaje)).toLocaleLowerCase();
+    opcion = (prompt(mensaje));
 }

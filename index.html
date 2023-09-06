@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/menu_desplegable.css" />
     <link rel="stylesheet" href="css/productos.css" />
     <link rel="stylesheet" href="css/sidebar.css" />
+
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   </head>
   <body>
     <!-- HEADER: - LOGO - SEARCH_BAR - USER -->
@@ -20,9 +23,17 @@
         /></a>
       </div>
 
+      <div class="hora">
+        <p>06/09/23</p>
+      </div>
+
       <div class="search-bar">
         <input type="text" class="search-input" placeholder="Buscar coche" />
         <button class="search-button">Buscar</button>
+      </div>
+
+      <div class="agregar" id="agregar">
+        <button class="btn btn-dark">Agregar Vehiculo</button>
       </div>
 
       <div class="user" id="userToggle">
@@ -81,20 +92,16 @@
         <div class="category-title">Tracción</div>
         <div class="category-content">
           <div class="campo-button">
-            <input type="radio" name="size" value="small" />
-            <label>Todo</label>
+            <label><input type="radio" name="size" value="small" /> Todo</label>
           </div>
           <div class="campo-button">
-            <input type="radio" name="size" value="medium" />
-            <label>Delantera</label>
+            <label><input type="radio" name="size" value="medium" /> Delantera</label>
           </div>
           <div class="campo-button">
-            <input type="radio" name="size" value="large" />
-            <label>Trasera</label>
+            <label><input type="radio" name="size" value="large" /> Trasera</label>
           </div>
           <div class="campo-button">
-            <input type="radio" name="size" value="large" />
-            <label>Total 4x4</label>
+            <label><input type="radio" name="size" value="large" /> Total 4x4</label>
           </div>
         </div>
       </div>
@@ -201,28 +208,30 @@
       </div>
 
       <div class="clear-filters">
-        <button id="clearFiltersButton">Limpiar Filtros</button>
+        <button id="clearFiltersButton" class="btn btn-danger">Limpiar Filtros</button>
       </div>
-      <!-- Fin Filtros -->
+      <!---------------------------------------------------------- Fin Filtros | Sidebar -->
     </div>
 
     <!-- PRODUCTOS -->
-    <!-- Sección de productos -->
-    <div class="products">
-      <a href="auto1.html">
-        <div class="product">
+
+    <div class="products" id="products">
+      <!-- Aca los Productos -->
+      <div class="product" id="00">
+        <a href="auto1.html">
           <img
-            src="img/productos/joshua-koblin-eqW1MPinEV4-unsplash.jpg"
+            src="img/productos/test1.jpg"
             alt="Producto 1"
             class="product-image"
           />
           <h3>$Precio</h3>
           <p>Marca Modelo</p>
           <p>Hp</p>
-          <p>Kilometros</p>
-        </div>
-      </a>
-      <div class="product">
+          <p>Kilometros <small class="text-body-secondary">50km </small></p>
+        </a>
+      </div>
+
+      <!-- <div class="product">
         <img
           src="img/productos/campbell-3ZUsNJhi_Ik-unsplash.jpg"
           alt="Producto 2"
@@ -243,10 +252,13 @@
         <p>Ford Mustang</p>
         <p>270 hp</p>
         <p>0 km</p>
-      </div>
+      </div> -->
 
       <!-- Fin Productos -->
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="js/productos.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/despliegue_categorias.js"></script>
   </body>
 </html>

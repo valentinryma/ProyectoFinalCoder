@@ -18,7 +18,7 @@
     max-width: 75%;
     width: 800px;
     display: flex;
-    
+
 }
 
 .search-input {
@@ -31,7 +31,7 @@
     color: #fff;
     border: none;
     padding: 5px 10px;
-    cursor: pointer;   
+    cursor: pointer;
 }
 
 .user {
@@ -51,7 +51,7 @@
 .user-menu {
     display: none;
     position: absolute;
-   
+
     right: 100px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -61,4 +61,8 @@
 
 .user:hover .user-menu {
     display: block;
+}
+
+.hora p {
+    margin: 0;
 }

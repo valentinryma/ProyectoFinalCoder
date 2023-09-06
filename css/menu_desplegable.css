@@ -1,4 +1,9 @@
 /* Estilos para los títulos de las categorías de filtros */
+
+.category {
+    margin-bottom: 15px;
+}
+
 .category-title {
     cursor: pointer;
     user-select: none;
@@ -11,7 +16,7 @@
     margin-top: 10px;
 }
 
-.category-title.open + .category-content {
+.category-title.open+.category-content {
     display: block;
 }
 
