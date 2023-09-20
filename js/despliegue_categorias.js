@@ -1,29 +1,30 @@
 // JavaScript para gestionar los títulos de las categorías de filtros
-const categoryTitles = document.querySelectorAll('.category-title');
+const categoryTitles = document.getElementsByClassName('category-title');
 
-categoryTitles.forEach(categoryTitle => {
-    categoryTitle.addEventListener('click', () => {
-        categoryTitle.classList.toggle('open');
+for (let i = 0; i < categoryTitles.length; i++) {
+    categoryTitles[i].addEventListener('click', () => {
+        categoryTitles[i].classList.toggle('open');
     });
-});
+}
 
 
 // JavaScript para limpiar filtros
 const clearFiltersButton = document.getElementById('clearFiltersButton');
-const selectYearMin = document.querySelector('.select-year[name="select-year-min"]');
-const selectYearMax = document.querySelector('.select-year[name="select-year-max"]');
+const selectYearMin = document.getElementById('select-year-min');
+const selectYearMax = document.getElementById('select-year-max');
 
 clearFiltersButton.addEventListener('click', () => {
-    const inputs = document.querySelectorAll('input');
-    
-    inputs.forEach(input => {
-        if (input.type === 'checkbox' || input.type === 'radio') {
-            input.checked = false;
-        } else if (input.type === 'number') {
-            input.value = '';
+    const inputs = document.getElementsByTagName('input');
+
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type === 'checkbox' || inputs[i].type === 'radio') {
+            inputs[i].checked = false;
+        } else if (inputs[i].type === 'number') {
+            inputs[i].value = '';
         }
-    });
-    
+
+    }
+
     // Resetear la opción seleccionada en el select de año
     selectYearMin.selectedIndex = 0;
     selectYearMax.selectedIndex = 0;

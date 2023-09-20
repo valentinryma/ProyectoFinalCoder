@@ -1,0 +1,33 @@
+.formula {
+    margin-top: 1%;
+    margin-bottom: 3%;
+    /* border: 1px solid black; */
+    padding: 35px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.formula h1 {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-group {
+    margin-top: 10px;
+}
+
+.enviar {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.enviar button {
+    background-color: #870000;
+    border: none;
+}
+
+.enviar button:hover {
+    background-color: #b60000;
+
+}
