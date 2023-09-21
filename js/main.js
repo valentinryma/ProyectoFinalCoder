@@ -33,10 +33,9 @@ main();
 
 //TODO ---------------------------
 
-//* Arreglar local Storage:
+//* Login
 /*
-    Al agregar un vehiculo nuevo, no permanece en el storage
-    Creo que cada vez que se ejecuta el archivo "productos.js" se resetea el storage
+    Crear formulario con Usuario y Contraseña,
+    Hardcodear usuario Admin
 */
-
 //TODO ---------------------- FIN 
