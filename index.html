@@ -12,6 +12,9 @@
 
     <!-- Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
   </head>
   <body>
     <!-- HEADER: - LOGO - SEARCH_BAR - USER -->
@@ -23,8 +26,8 @@
       </div>
 
       <div class="fecha">
-        <p class="hora"></p>
-        <p class="dia"></p>
+        <p class="hora" id="hora"></p>
+        <p class="dia" id="dia"></p>
       </div>
 
       <div class="search-bar">
@@ -41,7 +44,6 @@
             <button class="dropdown-item" type="button" id="btnAgregarVehiculo">
               <a href="agregarVehiculo.html">Agregar un Vehiculo</a>
             </button>
-            <button class="dropdown-item" type="bustton" id="btnConfigurarFiltros">Configurar Filtros</button>
             <button class="dropdown-item" type="bustton" id="btnResetDB">Resetear DB</button>
         </div>
       </div>
@@ -56,7 +58,7 @@
     </div>
 
     <!-- PAGINA DE INICIO: FILTER - PRODUCTOS -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
       <h2>Filtros</h2>
 
       <div class="category">
@@ -68,6 +70,7 @@
             min="0"
             step="any"
             placeholder="Mín."
+            id="input-precio-min"
           />
           <span class="number-divider">a</span>
           <input
@@ -76,6 +79,7 @@
             min="0"
             step="any"
             placeholder="Máx."
+            id="input-precio-max"
           />
         </div>
       </div>
@@ -83,34 +87,30 @@
       <div class="category">
         <div class="category-title">Estado</div>
         <div class="category-content" id="category-content-estado">
-          <label><input name="estado" type="checkbox" /> Nuevo </label><br />
-          <label><input name="estado" type="checkbox" /> Usado - Como nuevo </label><br />
-          <label><input name="estado" type="checkbox" /> Usado - Buen estado </label><br />
-          <label><input name="estado" type="checkbox" /> Usado - Aceptable </label><br />
+          <label><input name="estado" type="checkbox" value="Nuevo"/> Nuevo </label><br />
+          <label><input name="estado" type="checkbox" value="Usado - Como nuevo"/> Usado - Como nuevo </label><br />
+          <label><input name="estado" type="checkbox" value="Usado - Buen estado"/> Usado - Buen estado </label><br />
+          <label><input name="estado" type="checkbox" value="Usado - Aceptable"/> Usado - Aceptable </label><br />
         </div>
       </div>
 
       <div class="category">
         <div class="category-title">Marca</div>
         <div class="category-content" id="category-content-marca">
-          <label><input name="marca" type="checkbox" /> BMW </label><br />
-          <label><input name="marca" type="checkbox" /> Porsche </label><br />
-          <label><input name="marca" type="checkbox" /> Ferrari </label><br />
-          <label><input name="marca" type="checkbox" /> Mercedes</label><br />
-          <label><input name="marca" type="checkbox" /> Audi </label><br />
-          <label><input name="marca" type="checkbox" /> Toyota </label><br />
-          <label><input name="marca" type="checkbox" /> Honda </label><br />
-          <label><input name="marca" type="checkbox" /> Ford </label><br />
-          <label><input name="marca" type="checkbox" /> Chevrolet </label><br />
-          <label><input name="marca" type="checkbox" /> Nissan </label><br />
-          <label><input name="marca" type="checkbox" /> Volkswagen </label><br />
-          <label><input name="marca" type="checkbox" /> Hyundai </label><br />
-          <label><input name="marca" type="checkbox" /> Kia </label><br />
-          <label><input name="marca" type="checkbox" /> Subaru </label><br />
-          <label><input name="marca" type="checkbox" /> Volvo </label><br />
-          <label><input name="marca" type="checkbox" /> Mazda </label><br />
-          <label><input name="marca" type="checkbox" /> Land Rover </label><br />
-          <label><input name="marca" type="checkbox" /> Jaguar </label><br />
+          <label><input name="marca" type="checkbox" value="BMW"/> BMW </label><br />
+          <label><input name="marca" type="checkbox" value="Porsche"/> Porsche </label><br />
+          <label><input name="marca" type="checkbox" value="Ferrari"/> Ferrari </label><br />
+          <label><input name="marca" type="checkbox" value="Mercedes"/> Mercedes</label><br />
+          <label><input name="marca" type="checkbox" value="Audi"/> Audi </label><br />
+          <label><input name="marca" type="checkbox" value="Toyota"/> Toyota </label><br />
+          <label><input name="marca" type="checkbox" value="Honda"/> Honda </label><br />
+          <label><input name="marca" type="checkbox" value="Ford"/> Ford </label><br />
+          <label><input name="marca" type="checkbox" value="Chevrolet"/> Chevrolet </label><br />
+          <label><input name="marca" type="checkbox" value="Nissan"/> Nissan </label><br />
+          <label><input name="marca" type="checkbox" value="Volkswagen"/> Volkswagen </label><br />
+          <label><input name="marca" type="checkbox" value="Hyundai"/> Hyundai </label><br />
+          <label><input name="marca" type="checkbox" value="Subaru"/> Subaru </label><br />
+          <label><input name="marca" type="checkbox" value="Mazda"/> Mazda </label><br />
         </div>
       </div>
 
@@ -134,9 +134,9 @@
 
       <div class="category">
         <div class="category-title">Año</div>
-        <div class="category-content" id="category-content-anio">
-          <select name="select-year-min" class="select-year" id="select-year-min">
-            <option value="value1" selected>Mín.</option>
+        <div class="category-content">
+          <select name="select-anio-min" class="select-year" id="select-anio-min">
+            <option value="value1" default>Mín.</option>
             <option value="1980">1980</option>
             <option value="1981">1981</option>
             <option value="1982">1982</option>
@@ -183,8 +183,8 @@
             <option value="2023">2023</option>
           </select>
           <span class="number-divider">a</span>
-          <select name="select-year-max" class="select-year" id="select-year-max>
-            <option value="value1" selected>Máx.</option>
+          <select name="select-anio-max" class="select-year" id="select-anio-max">
+            <option value="value1" default>Máx.</option>
             <option value="1980">1980</option>
             <option value="1981">1981</option>
             <option value="1982">1982</option>
@@ -290,12 +290,16 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
+      <!-- Seet Alert -->
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+      <!-- Toastify -->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+      <!-- Luxon: Fechas / Timers / etc... -->
+      <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
 
       <script src="js/productos.js"></script>
       <script src="js/funcionesPrincipal.js"></script>
       <script src="js/funcionesFiltro.js"></script>
-      <script src="js/despliegue_categorias.js"></script>
       <script src="js/initProductos.js"></script>
       <script src="js/main.js"></script>
     </body>

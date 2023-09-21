@@ -1,11 +1,11 @@
 const productos = [
-    new Vehiculo('BMW', 'E36', 'Trasera', 196, 1996, 15000, 'Usado', 60000, 'img/productos/1.jpg'),
-    new Vehiculo('Honda', 'Civic', 'Delantera', 134, 1998, 12000, 'Usado', 12000, 'img/productos/2.jpg'),
-    new Vehiculo('Ford', 'Fiesta', 'Delantera', 100, 2008, 3750, 'Usado', 22000, 'img/productos/3.jpg'),
-    new Vehiculo('Ford', '150', 'Trasera', 245, 1985, 850, 'Usado', 67000, 'img/productos/4.jpg'),
-    new Vehiculo('Nissan', 'Kicks', 'Delantera', 80, 2019, 5000, 'Usado', 1233, 'img/productos/5.jpg'),
+    new Vehiculo('BMW', 'E36', 'Trasera', 196, 1996, 15000, 'Usado - Como nuevo', 60000, 'img/productos/1.jpg'),
+    new Vehiculo('Honda', 'Civic', 'Delantera', 134, 1998, 12000, 'Usado - Aceptable', 12000, 'img/productos/2.jpg'),
+    new Vehiculo('Ford', 'Fiesta', 'Delantera', 100, 2008, 3750, 'Usado - Aceptable', 22000, 'img/productos/3.jpg'),
+    new Vehiculo('Ford', '150', 'Total', 245, 1985, 850, 'Usado - Como nuevo', 67000, 'img/productos/4.jpg'),
+    new Vehiculo('Nissan', 'Kicks', 'Delantera', 80, 2019, 5000, 'Usado - Buen estado', 1233, 'img/productos/5.jpg'),
     new Vehiculo('Toyota', 'Etios', 'Delantera', 96, 2023, 7500, 'Nuevo', 0, 'img/productos/6.jpg'),
-    new Vehiculo('Jeep', 'Commander', 'Trasera', 200, 2022, 10000, 'Nuevo', 0, 'img/productos/7.jpg')
+    new Vehiculo('Jeep', 'Commander', 'Total', 200, 2022, 10000, 'Nuevo', 0, 'img/productos/7.jpg')
 ];
 
 

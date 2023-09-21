@@ -1,4 +1,20 @@
 //? FUNCIONES PRINCIPALES
+const aviso = () => {
+    Toastify({
+        text: "Login 👉🏼",
+        offset: {
+            x: 45,
+            y: -1.5 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        duration: 1500,
+        style: {
+            background: "#870000",
+            border: "solid 1px black",
+            borderRadius: "50px"
+        }
+    }).showToast();
+};
+
 const asignarRol = () => {
     let rol = localStorage.getItem('rol');
     usuario.classList.add(rol);
@@ -6,20 +22,18 @@ const asignarRol = () => {
 };
 
 const time = () => {
-    const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
-    const dia = document.getElementsByClassName('dia');
-    const hora = document.getElementsByClassName('hora');
+    const dia = document.getElementById('dia');
+    const hora = document.getElementById('hora');
 
-    let d = new Date().getDay();
-    let h = new Date().getHours();
-    let m = new Date().getMinutes();
+    const DateTime = luxon.DateTime;
+    const inicio = DateTime.now();
 
-    for (let i = 0; i < dia.length; i++) {
-        dia[i].innerText = `${dias[d]}`;
-        hora[i].innerText = `${h}:${m}`;
-    }
+    const h = inicio.toLocaleString(DateTime.TIME_24_SIMPLE); // Hora y Minutos
+    const d = inicio.weekdayLong; // Dia de la semana 
 
-}
+    hora.innerText = `${h}`;
+    dia.innerText = `${d}`;
+};
 
 const agregarVehiculos = (...vehiculos) => {
     for (const vehiculo of vehiculos) {
@@ -78,17 +92,6 @@ const limpiar = () => {
     seccionProductos.innerHTML = '';
 };
 
-const buscarVehiculoId = (listaVehiculos) => {
-    encontrado = false;
-    alert('-- BUSCAR VEHICULO --');
-    let id = parseInt(prompt('Ingrese el ID del vehiculo'));
-    const resultadoBusquedaId = listaVehiculos.find(vehiculo => vehiculo.id === id);
-    if (resultadoBusquedaId == undefined) {
-        alert('Ningun vehiculo con ID: ' + "'" + id + "'");
-    } else {
-        resultadoBusquedaId.mostrarVehiculo();
-    }
-}
 
 const eliminarVehiculo = (id) => {
     Swal.fire({
@@ -112,33 +115,5 @@ const eliminarVehiculo = (id) => {
             Swal.fire('Vehiculo eliminado con exito.', '', 'success')
         }
     })
-}
-
-
-const filtrarVehiculos = () => {
-    let filtros;
-    const mensaje =
-        (
-            '-- FILTRAR VEHICULOS --' + '\n' +
-            '1 - Configurar filtro' + '\n' +
-            '2 - Buscar ' + '\n' +
-            '3 - Ver filtros activos ' + '\n' +
-            'S - Salir'
-        );
-
-    let opcion = prompt(mensaje);
-    while (opcion.toLowerCase() != 's') {
-        switch (opcion) {
-            case '1':
-                filtros = configFiltro();
-                break;
-            case '2':
-                filtrar(filtros);
-                break;
-            default:
-                break;
-        }
-        opcion = (prompt(mensaje));
-    }
 }
 

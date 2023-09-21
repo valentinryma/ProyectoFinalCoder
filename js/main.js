@@ -1,8 +1,6 @@
 //? DOM - Pagina Principal
-const btnConfigurarFiltros = document.getElementById('btnConfigurarFiltros');
 const btnAgregarVehiculo = document.getElementById('btnAgregarVehiculo');
 const btnResetDB = document.getElementById('btnResetDB');
-
 const btnLimpiarFiltros = document.getElementById('clearFiltersButton');
 const btnVerFiltros = document.getElementById('btnVerFiltros');
 const btnAgregar = document.getElementById('agregar');
@@ -13,11 +11,6 @@ const usuario = document.getElementById('usuario');
 btnLimpiarFiltros.onclick = () => {
     renderizar(listaVehiculos);
     console.log('renderizando...')
-}
-
-btnConfigurarFiltros.onclick = () => {
-    let filtro = configFiltro();
-    filtrar(filtro);
 }
 
 btnResetDB.onclick = () => {
@@ -31,10 +24,10 @@ btnResetDB.onclick = () => {
 
 function main() {
     renderizar(listaVehiculos);
+    time();
+    aviso();
 }
 
-setInterval(time, 60000);
-time();
 main();
 
 
