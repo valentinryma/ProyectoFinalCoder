@@ -1,27 +1,53 @@
 //? FUNCIONES PRINCIPALES
 const aviso = () => {
+    //* Alerta para saber donde esta el panel de Inicio de Sesion.
+
     Toastify({
         text: "Login 👉🏼",
         offset: {
             x: 45,
-            y: -1.5 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            y: -1.5
         },
         duration: 1500,
         style: {
             background: "#870000",
             border: "solid 1px black",
             borderRadius: "50px"
-        }
+        },
+        destination: "inicioSesion.html"
     }).showToast();
 };
 
+const obtenerUsers = () => {
+    const URLUSERS = "/users.json";
+    fetch(URLUSERS)
+        .then((respuesta) => respuesta.json())
+        .then((data) => {
+            const listaUsuarios = data.users;
+            for (const user of listaUsuarios) {
+                usuarios.push(user);
+            }
+        })
+}
+
 const asignarRol = () => {
+    //* Asigna el rol del usuario (admin/user)
+
     let rol = localStorage.getItem('rol');
     usuario.classList.add(rol);
     rol == 'admin' && usuario.removeAttribute('hidden');
 };
 
+const asignarFtUsuario = () => {
+    let foto = localStorage.getItem('foto');
+    const imgUsuario = document.getElementById('img-usuario');
+    imgUsuario.innerHTML = `
+        <img src="${foto}" alt="Usuario" width="32" height="32" />
+    `;
+}
+
 const time = () => {
+    //* Obtiene y renderiza la hora y el dia.
     const dia = document.getElementById('dia');
     const hora = document.getElementById('hora');
 
@@ -36,6 +62,8 @@ const time = () => {
 };
 
 const agregarVehiculos = (...vehiculos) => {
+    //* Agrega un o una lista de vehiculos al localStorage
+
     for (const vehiculo of vehiculos) {
         listaVehiculos.push(vehiculo);
     }
@@ -43,10 +71,12 @@ const agregarVehiculos = (...vehiculos) => {
 };
 
 const renderizar = (listaVehiculos) => {
+    //* Recibe un arreglo de Vehiculos, el cual sera renderizado en el index.html 
+    asignarFtUsuario();
     asignarRol();
-    // Renderiza todos los vehiculos que esten en el Array ("stock");
     seccionProductos.innerHTML = '';  // Limpia los productos previamente.
     if (localStorage.getItem('rol') == 'admin') {
+        // Si es admin, se renderizará el "panel administrativo"
         for (const vehiculo of listaVehiculos) {
             seccionProductos.innerHTML += `
             <div class="product" id="${vehiculo.id}">
@@ -88,12 +118,12 @@ const renderizar = (listaVehiculos) => {
 };
 
 const limpiar = () => {
-    // Limpiar Pantalla (Productos)
+    //* Limpia el contenido del index.html (La seccion donde se ubican los vehiculos en venta)
     seccionProductos.innerHTML = '';
 };
 
-
 const eliminarVehiculo = (id) => {
+    //* Elimina el vehiculo selecionado / SweetAlert para confirmar la decision de eliminar.
     Swal.fire({
         title: 'Seguro que desea eliminar este vehiculo?',
         showDenyButton: true,
@@ -116,4 +146,3 @@ const eliminarVehiculo = (id) => {
         }
     })
 }
-

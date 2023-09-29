@@ -1,39 +1,63 @@
 const formularioLogin = document.getElementById('iniciar-sesion');
+const username = document.getElementById('form-username');
+const password = document.getElementById('form-pwd');
 
 // Datos del Formulario
 formularioLogin.addEventListener('submit', (e) => {
     e.preventDefault(); // No envia el form.
-    const opciones = document.getElementsByName("rol");
-    const avisoEnvioCorrecto = document.getElementById('notificacionEvioCorrecto');
-    let rol = "";
 
-    // Recorre la lista de elementos de radio y encuentra el que está seleccionado.
-    for (var i = 0; i < opciones.length; i++) {
-        if (opciones[i].checked) {
-            rol = opciones[i].value;
-            break;
+    let rol = "";
+    let foto = "";
+
+    const userEncontrado = usuarios.find((usuario) => (usuario.username == username.value));
+    if (userEncontrado != undefined) {
+        if (userEncontrado.username == username.value && userEncontrado.password == password.value) {
+            console.log('Correcto');
         }
+        else {
+            console.log('Incorrecto');
+        }
+    } else {
+        console.log('No existe')
     }
 
-    if (rol != '') {
-        localStorage.setItem('rol', rol);
-        Swal.fire({
-            icon: 'success',
-            title: `Rol ${localStorage.getItem('rol')} asignado correctamente`,
-            text: 'Será redireccionado...',
-            showConfirmButton: false,
-            timer: 2000
-        })
-        // Reedirecciona a la pagina principal
-        setTimeout(function () {
-            // Cambia la URL actual a la URL de destino.
-            window.location.href = "index.html";
-        }, 2000);
+    if (userEncontrado != undefined) {
+        if (userEncontrado.username == username.value && userEncontrado.password == password.value) {
+            rol = userEncontrado.rol;
+            foto = userEncontrado.foto;
+            localStorage.setItem('rol', rol);
+            localStorage.setItem('foto', foto);
+            Swal.fire({
+                title: `Inicio de sesion correcto...`,
+                text: `Rol asignado:  ${(localStorage.getItem('rol')).toUpperCase()}`,
+                showConfirmButton: false,
+                imageUrl: `${foto}`,
+                imageWidth: 200,
+                imageHeight: 200,
+                timer: 2000
+            })
+            // Reedirecciona a la pagina principal
+            setTimeout(function () {
+                window.location.href = "index.html";
+            }, 2000);
+        } else {
+            Swal.fire(
+                'Error 💀',
+                'Usuario o contraseña incorrecta...',
+                'error'
+            )
+        }
     } else {
         Swal.fire(
             'Error 💀',
-            'Por favor elija una opcion...',
+            'Usuario o contraseña incorrecta...',
             'error'
         )
     }
 });
+
+asignarFtUsuario();
+time();
+
+obtenerUsers()
+let usuarios = [];

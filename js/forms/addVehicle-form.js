@@ -1,6 +1,9 @@
 //? Formulario - Agregar vehiculo
 const formAddVehiculo = document.getElementById('form-agregar-vehiculo');
+
 listaVehiculos = JSON.parse(localStorage.getItem('stock'));
+time();
+asignarFtUsuario();
 
 formAddVehiculo.addEventListener('submit', (e) => {
     e.preventDefault();

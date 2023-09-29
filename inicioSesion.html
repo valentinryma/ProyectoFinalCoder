@@ -17,35 +17,22 @@
   <body>
     <!-- HEADER: - LOGO - SEARCH_BAR - USER -->
     <div class="header">
+      <div class="fecha" style="margin-left: 5px;">
+        <p class="hora" id="hora"></p>
+        <p class="dia" id="dia"></p>
+      </div>
+      
       <div class="logo">
         <a href="index.html"
           ><img src="img/logo/logoHeader.png" alt="Logo"
         /></a>
       </div>
-
-      <div class="fecha">
-        <p id="hora"></p>
-        <p id="dia"></p>
-      </div>
-
-    
-
-      <div class="dropdown" >
-        <!-- <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Opciones
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <h6 class="dropdown-header">Menu de Opciones</h6>
-            <button class="dropdown-item" type="button">Agregar un Vehiculo</button>
-            <button class="dropdown-item" type="button">--</button>
-            <button class="dropdown-item" type="button">--</button>
-        </div> -->
-    </div>
-    <div></div>
-
+      
       <div class="user" id="userToggle">
         <div class="user-image">
-          <img src="img/logo/foto_usuario.jpg" alt="Usuario" />
+          <a href="inicioSesion.html" id="img-usuario">
+            <!-- Aqui Img usaurio -->
+          </a>
         </div>
       </div>
     </div>
@@ -54,14 +41,13 @@
     <div class="container formula">
         <form name="iniciar-sesion" id="iniciar-sesion">
             <h1>Iniciar sesion</h1>
-            
-            <div class="form-group">
-                <div class="campo-button">
-                    <label><input type="radio" name="rol" value="user" /> Usuario</label>
-                </div>
-                <div class="campo-button">
-                    <label><input type="radio" name="rol" value="admin" /> Administrador</label>
-                </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="form-username" placeholder="admin">
+              <label for="form-username">Nombre de usuario</label>
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="form-pwd" placeholder="admin123">
+              <label for="form-pwd">Contraseña</label>
             </div>
             
             <div class="enviar">
@@ -74,8 +60,19 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!-- Seet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    <!-- Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- Luxon: Fechas / Timers / etc... -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
+
+    
+    <script src="js/funcionesPrincipal.js"></script>
     <script src="js/forms/login-form.js"></script>
+
     <!-- <script src="js/productos.js"></script>
     <script src="js/main.js"></script> -->
   </body>

@@ -31,8 +31,8 @@
       </div>
 
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Buscar coche" />
-        <button class="search-button">Buscar</button>
+        <input type="text" class="search-input" placeholder="Buscar coche: Marca - Modelo - Traccion..." id="parametro-busqueda"/>
+        <button class="search-button" id="buscar">Buscar</button>
       </div>
 
       <div class="dropdown" id='usuario' hidden>
@@ -50,8 +50,8 @@
 
       <div class="user" id="userToggle">
         <div class="user-image">
-          <a href="inicioSesion.html">
-            <img src="img/logo/foto_usuario.jpg" alt="Usuario" />
+          <a href="inicioSesion.html" id="img-usuario">
+            <!-- Aqui Img usaurio -->
           </a>
         </div>
       </div>
@@ -240,47 +240,8 @@
     </div>
 
     <!-- PRODUCTOS -->
-
     <div class="products" id="products">
       <!-- Aca los Productos -->
-      <div class="product" id="00">
-        <a href="auto1.html">
-          <img
-            src="img/productos/test1.jpg"
-            alt="Producto 1"
-            class="product-image"
-          />
-          <h3>$Precio</h3>
-          <p>Marca Modelo</p>
-          <p>Hp</p>
-          <p>Kilometros <small class="text-body-secondary">50km </small></p>
-        </a>
-      </div>
-
-      <!-- <div class="product">
-        <img
-          src="img/productos/campbell-3ZUsNJhi_Ik-unsplash.jpg"
-          alt="Producto 2"
-          class="product-image"
-        />
-        <h3>$150.000USD</h3>
-        <p>Porshe 911</p>
-        <p>300 hp</p>
-        <p>13 mil km</p>
-      </div>
-      <div class="product">
-        <img
-          src="img/productos/joey-banks-YApiWyp0lqo-unsplash.jpg"
-          alt="Producto 2"
-          class="product-image"
-        />
-        <h3>$78.000</h3>
-        <p>Ford Mustang</p>
-        <p>270 hp</p>
-        <p>0 km</p>
-      </div> -->
-
-      <!-- Fin Productos -->
     </div>
     
     
@@ -299,8 +260,8 @@
 
       <script src="js/productos.js"></script>
       <script src="js/funcionesPrincipal.js"></script>
-      <script src="js/funcionesFiltro.js"></script>
       <script src="js/initProductos.js"></script>
+      <script src="js/funcionesFiltro.js"></script>
       <script src="js/main.js"></script>
     </body>
 </html>

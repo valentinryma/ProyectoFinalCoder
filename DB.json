@@ -1,0 +1,88 @@
+{
+    "vehiculos": [
+        {
+            "marca": "BMW",
+            "modelo": "E36",
+            "traccion": "Trasera",
+            "anio": 1996,
+            "hp": 196,
+            "estado": "Usado - Como nuevo",
+            "precio": 15000,
+            "km": 60000,
+            "foto": "img/productos/1.jpg",
+            "id": 1
+        },
+        {
+            "marca": "Honda",
+            "modelo": "Civic",
+            "traccion": "Delantera",
+            "anio": 1998,
+            "hp": 134,
+            "estado": "Usado - Aceptable",
+            "precio": 12000,
+            "km": 12000,
+            "foto": "img/productos/2.jpg",
+            "id": 2
+        },
+        {
+            "marca": "Ford",
+            "modelo": "Fiesta",
+            "traccion": "Delantera",
+            "anio": 2008,
+            "hp": 100,
+            "estado": "Usado - Aceptable",
+            "precio": 3750,
+            "km": 22000,
+            "foto": "img/productos/3.jpg",
+            "id": 3
+        },
+        {
+            "marca": "Ford",
+            "modelo": "150",
+            "traccion": "Total",
+            "anio": 1985,
+            "hp": 245,
+            "estado": "Usado - Como nuevo",
+            "precio": 850,
+            "km": 67000,
+            "foto": "img/productos/4.jpg",
+            "id": 4
+        },
+        {
+            "marca": "Nissan",
+            "modelo": "Kicks",
+            "traccion": "Delantera",
+            "anio": 2019,
+            "hp": 80,
+            "estado": "Usado - Buen estado",
+            "precio": 5000,
+            "km": 1233,
+            "foto": "img/productos/5.jpg",
+            "id": 5
+        },
+        {
+            "marca": "Toyota",
+            "modelo": "Etios",
+            "traccion": "Delantera",
+            "anio": 2023,
+            "hp": 96,
+            "estado": "Nuevo",
+            "precio": 7500,
+            "km": 0,
+            "foto": "img/productos/6.jpg",
+            "id": 6
+        },
+        {
+            "marca": "Jeep",
+            "modelo": "Commander",
+            "traccion": "Total",
+            "anio": 2022,
+            "hp": 200,
+            "estado": "Nuevo",
+            "precio": 10000,
+            "km": 0,
+            "foto": "img/productos/7.jpg",
+            "id": 7
+        }
+    ]
+}

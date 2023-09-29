@@ -15,20 +15,5 @@ class Vehiculo {
         // Asigna automaticamente e incrementalmente el id cada vez que sea crea un nuevo objeto
         this.id = ++Vehiculo.contadorVehiculos;
     }
-    mostrarVehiculo() {
-        let texto =
-            (
-                '-- MOSTRANDO VEHICULO --' + '\n' +
-                'Id Vehiculo: ' + this.id + '\n' +
-                'Marca: ' + this.marca + '\n' +
-                'Modelo: ' + this.modelo + '\n' +
-                'Traccion: ' + this.traccion + '\n' +
-                'Anio: ' + this.anio + '\n' +
-                'Hp: ' + this.hp + '\n' +
-                'Estado: ' + this.estado + '\n' +
-                'Precio: ' + '$' + this.precio + '\n'
-            );
-        alert(texto);
-    }
 }
 

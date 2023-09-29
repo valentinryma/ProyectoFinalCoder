@@ -1,41 +1,55 @@
-const productos = [
-    new Vehiculo('BMW', 'E36', 'Trasera', 196, 1996, 15000, 'Usado - Como nuevo', 60000, 'img/productos/1.jpg'),
-    new Vehiculo('Honda', 'Civic', 'Delantera', 134, 1998, 12000, 'Usado - Aceptable', 12000, 'img/productos/2.jpg'),
-    new Vehiculo('Ford', 'Fiesta', 'Delantera', 100, 2008, 3750, 'Usado - Aceptable', 22000, 'img/productos/3.jpg'),
-    new Vehiculo('Ford', '150', 'Total', 245, 1985, 850, 'Usado - Como nuevo', 67000, 'img/productos/4.jpg'),
-    new Vehiculo('Nissan', 'Kicks', 'Delantera', 80, 2019, 5000, 'Usado - Buen estado', 1233, 'img/productos/5.jpg'),
-    new Vehiculo('Toyota', 'Etios', 'Delantera', 96, 2023, 7500, 'Nuevo', 0, 'img/productos/6.jpg'),
-    new Vehiculo('Jeep', 'Commander', 'Total', 200, 2022, 10000, 'Nuevo', 0, 'img/productos/7.jpg')
-];
+inicializarProductos();
 
+function inicializarProductos() {
+    obtenerDB();
+    productos = []; // GLOBAL
 
-// Verifica si ya hay productos en el localStorage
-if (!localStorage.getItem("stock")) {
-    // Si no hay productos, inicializa el arreglo base y lo guarda en el localStorage
+    // Verifica si ya hay productos en el localStorage
+    if (!localStorage.getItem("stock")) {
+        // Si no hay productos, inicializa el arreglo base y lo guarda en el localStorage
+        localStorage.setItem("stock", JSON.stringify(productos));
+    }
 
-    localStorage.setItem("stock", JSON.stringify(productos));
+    listaVehiculos = JSON.parse(localStorage.getItem('stock')); // GLOBAL
+
 }
 
-listaVehiculos = JSON.parse(localStorage.getItem('stock'));
+async function obtenerDB() {
+    //* Trae los datos del archivo JSON.
 
+    const URLJSON = '/DB.json';
+    const respuesta = await (fetch(URLJSON));
+    const data = await respuesta.json();
+    const vehiculos = data.vehiculos;
+    for (vehiculo of vehiculos) {
+        productos.push(vehiculo);
+    }
+}
+
+const reset = () => {
+    //* Limpia el localStorage, luego le carga el arreglo productos y por ultimo renderiza la pagina (Deja el stock de vehiculos inicial)
+
+    localStorage.removeItem('stock');
+    localStorage.setItem("stock", JSON.stringify(productos));
+    listaVehiculos = JSON.parse(localStorage.getItem('stock'));
+    renderizar(listaVehiculos);
+}
 
 const resetDB = () => {
+    //* Alerta (SweetAlert) -> Si: Reseta la DB
+
     Swal.fire({
         title: 'Seguro que desea resetera la base de datos?',
         showDenyButton: true,
         confirmButtonText: 'Resetear',
         denyButtonText: `Cancelar`,
     }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            localStorage.removeItem('stock');
-            localStorage.setItem("stock", JSON.stringify(productos));
-            listaVehiculos = JSON.parse(localStorage.getItem('stock'));
-            renderizar(listaVehiculos);
+            reset();
             Swal.fire('Resetado exitoso!', '', 'success')
         } else if (result.isDenied) {
             Swal.fire('No se han realizado cambios.', '', 'info')
         }
     })
-
 }
+
