@@ -36,6 +36,8 @@
       </div>
 
       <div class="dropdown" id='usuario' hidden>
+        <!-- Aqui Menu de opciones: usuario/admin -->
+  
         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Opciones
         </button>
@@ -44,13 +46,13 @@
             <button class="dropdown-item" type="button" id="btnAgregarVehiculo">
               <a href="agregarVehiculo.html">Agregar un Vehiculo</a>
             </button>
-            <button class="dropdown-item" type="bustton" id="btnResetDB">Resetear DB</button>
+            <button class="dropdown-item" type="button" id="btnResetDB">Resetear DB</button>
         </div>
       </div>
 
       <div class="user" id="userToggle">
         <div class="user-image">
-          <a href="inicioSesion.html" id="img-usuario">
+          <a href="logIn.html" id="img-usuario">
             <!-- Aqui Img usaurio -->
           </a>
         </div>
@@ -101,6 +103,7 @@
           <label><input name="marca" type="checkbox" value="Porsche"/> Porsche </label><br />
           <label><input name="marca" type="checkbox" value="Ferrari"/> Ferrari </label><br />
           <label><input name="marca" type="checkbox" value="Mercedes"/> Mercedes</label><br />
+          <label><input name="marca" type="checkbox" value="Jeep"/> Jeep</label><br />
           <label><input name="marca" type="checkbox" value="Audi"/> Audi </label><br />
           <label><input name="marca" type="checkbox" value="Toyota"/> Toyota </label><br />
           <label><input name="marca" type="checkbox" value="Honda"/> Honda </label><br />
@@ -259,9 +262,11 @@
       <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
 
       <script src="js/productos.js"></script>
-      <script src="js/funcionesPrincipal.js"></script>
       <script src="js/initProductos.js"></script>
+      <script src="js/initUsers.js"></script>
       <script src="js/funcionesFiltro.js"></script>
+      <script src="js/funcionesPrincipal.js"></script>
+
       <script src="js/main.js"></script>
-    </body>
+  </body>
 </html>

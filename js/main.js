@@ -12,10 +12,6 @@ btnLimpiarFiltros.onclick = () => {
     console.log('renderizando...')
 }
 
-btnResetDB.onclick = () => {
-    resetDB();
-}
-
 function main() {
     renderizar(listaVehiculos);
     time();

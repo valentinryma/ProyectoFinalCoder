@@ -3,43 +3,93 @@ const aviso = () => {
     //* Alerta para saber donde esta el panel de Inicio de Sesion.
 
     Toastify({
-        text: "Login 👉🏼",
+        text: "Login 👆🏼",
         offset: {
-            x: 45,
-            y: -1.5
+            x: 195,
+            y: 40
         },
-        duration: 1500,
+        duration: 1000,
         style: {
             background: "#870000",
             border: "solid 1px black",
             borderRadius: "50px"
         },
-        destination: "inicioSesion.html"
+        destination: "logIn.html"
     }).showToast();
 };
 
-const obtenerUsers = () => {
-    const URLUSERS = "/users.json";
-    fetch(URLUSERS)
-        .then((respuesta) => respuesta.json())
-        .then((data) => {
-            const listaUsuarios = data.users;
-            for (const user of listaUsuarios) {
-                usuarios.push(user);
-            }
-        })
-}
-
 const asignarRol = () => {
     //* Asigna el rol del usuario (admin/user)
-
     let rol = localStorage.getItem('rol');
     usuario.classList.add(rol);
-    rol == 'admin' && usuario.removeAttribute('hidden');
+    usuario.removeAttribute('hidden');
+    if (rol == 'admin') {
+        localStorage.setItem('foto', 'https://secure.gravatar.com/avatar/e77e62c434f46533200645adb2980ae4?s=86&d=robohash&r=g')
+        usuario.innerHTML = ` 
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <h6 class="dropdown-header">Menu de Opciones</h6>
+                <button class="dropdown-item" type="button" id="btnAgregarVehiculo">
+                    <a href="agregarVehiculo.html">Agregar un Vehiculo</a>
+                </button>
+                <button class="dropdown-item" type="button" id="btnResetDB">Resetear DB</button>
+                <button class="dropdown-item" type="button" id="btnLogOut">
+                    Cerrar sesion
+                </button>
+            </div>
+            `;
+        const btnResetDB = document.getElementById('btnResetDB')
+        btnResetDB.onclick = () => {
+            resetDB();
+        }
+
+    } else if (rol == 'visitor') {
+        usuario.innerHTML = `
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <h6 class="dropdown-header">Menu de Opciones</h6>
+                <button class="dropdown-item" type="button" id="btnLogIn">
+                    <a href="logIn.html">Iniciar sesion</a>
+                </button>
+                <button class="dropdown-item" type="button" id="btnSigIn">
+                    <a href="sigIn.html">Crear cuenta</a>
+                </button>
+            </div>
+            `;
+    } else {
+        usuario.innerHTML = `
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <h6 class="dropdown-header">Menu de Opciones</h6>
+                <button class="dropdown-item" type="button" id="btnLogOut">
+                    Cerrar sesion
+                </button>
+            </div>
+            `;
+    }
+    if (rol == 'admin' || rol == 'user') {
+        //* LogOut - Cambia a una sesion de visitante por defecto.
+
+        const logOut = document.getElementById('btnLogOut');
+        logOut.addEventListener('click', () => {
+            localStorage.setItem('rol', 'visitor');
+            localStorage.setItem('foto', 'https://i.pinimg.com/originals/c5/ea/88/c5ea885c9cf5f7f8fc9b3fb73dcffa42.jpg');
+
+            window.location.href = "index.html";
+        })
+    }
 };
 
 const asignarFtUsuario = () => {
     let foto = localStorage.getItem('foto');
+
+
     const imgUsuario = document.getElementById('img-usuario');
     imgUsuario.innerHTML = `
         <img src="${foto}" alt="Usuario" width="32" height="32" />
@@ -70,17 +120,19 @@ const agregarVehiculos = (...vehiculos) => {
     localStorage.setItem('stock', JSON.stringify(listaVehiculos));
 };
 
+
 const renderizar = (listaVehiculos) => {
     //* Recibe un arreglo de Vehiculos, el cual sera renderizado en el index.html 
     asignarFtUsuario();
     asignarRol();
+
     seccionProductos.innerHTML = '';  // Limpia los productos previamente.
     if (localStorage.getItem('rol') == 'admin') {
         // Si es admin, se renderizará el "panel administrativo"
         for (const vehiculo of listaVehiculos) {
             seccionProductos.innerHTML += `
             <div class="product" id="${vehiculo.id}">
-                <a href="auto1.html">
+                <a href="auto1.html" onclick="selecionarVehiculo(${vehiculo.id})">
                   <img
                     src="${vehiculo.foto}"
                     alt="Producto ${vehiculo.marca} ${vehiculo.modelo}"
@@ -99,7 +151,7 @@ const renderizar = (listaVehiculos) => {
         for (const vehiculo of listaVehiculos) {
             seccionProductos.innerHTML += `
             <div class="product" id="${vehiculo.id}">
-                <a href="auto1.html">
+                <a href="auto1.html" onclick="selecionarVehiculo(${vehiculo.id})">
                   <img
                     src="${vehiculo.foto}"
                     alt="Producto ${vehiculo.marca} ${vehiculo.modelo}"
@@ -114,8 +166,15 @@ const renderizar = (listaVehiculos) => {
             `;
         }
     }
-
 };
+
+const selecionarVehiculo = (id) => {
+    //* Carga el vehiculo de manera unica en el localStorage, para posteriormente renderizar una pagina 
+    // con ese vehiculo.
+
+    vehiculo = (JSON.parse(localStorage.getItem('stock'))).find((v) => v.id == id);
+    localStorage.setItem("vehiculo", JSON.stringify(vehiculo));
+}
 
 const limpiar = () => {
     //* Limpia el contenido del index.html (La seccion donde se ubican los vehiculos en venta)

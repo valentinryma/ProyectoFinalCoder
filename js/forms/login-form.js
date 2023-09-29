@@ -4,6 +4,8 @@ const password = document.getElementById('form-pwd');
 
 // Datos del Formulario
 formularioLogin.addEventListener('submit', (e) => {
+    //* Simula la creacion de un Usuario, el usuario creado no persiste ya que no se puede editar el user.json que simula la db
+    // Se podria hacer una copia en el localStorage, como con los vehiculos, pero estaria visible a todos y no seria lo optimo.
     e.preventDefault(); // No envia el form.
 
     let rol = "";
@@ -56,8 +58,10 @@ formularioLogin.addEventListener('submit', (e) => {
     }
 });
 
-asignarFtUsuario();
-time();
+const login = () => {
+    asignarFtUsuario();
+    time();
+    obtenerUsers();
+}
 
-obtenerUsers()
-let usuarios = [];
+login();

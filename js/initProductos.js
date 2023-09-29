@@ -16,7 +16,6 @@ function inicializarProductos() {
 
 async function obtenerDB() {
     //* Trae los datos del archivo JSON.
-
     const URLJSON = '/DB.json';
     const respuesta = await (fetch(URLJSON));
     const data = await respuesta.json();

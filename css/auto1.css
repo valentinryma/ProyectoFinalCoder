@@ -160,3 +160,8 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px;
 }
+
+/* confeti */
+document {
+    border: none;
+}
