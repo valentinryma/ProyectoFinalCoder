@@ -14,16 +14,6 @@ function inicializarProductos() {
 
 }
 
-async function obtenerDB() {
-    //* Trae los datos del archivo JSON.
-    const URLJSON = '/DB.json';
-    const respuesta = await (fetch(URLJSON));
-    const data = await respuesta.json();
-    const vehiculos = data.vehiculos;
-    for (vehiculo of vehiculos) {
-        productos.push(vehiculo);
-    }
-}
 
 const reset = () => {
     //* Limpia el localStorage, luego le carga el arreglo productos y por ultimo renderiza la pagina (Deja el stock de vehiculos inicial)

@@ -1,4 +1,32 @@
 //? FUNCIONES PRINCIPALES
+
+async function obtenerUsers() {
+    //* Trae los datos del archivo JSON en un arreglo 'usuarios'
+    // En initProductos.js esta el arreglo declarado de manera global y el llamado de la funcion.
+
+    const URLUSERS = "/db/users.json";
+    const respuesta = await (fetch(URLUSERS));
+    const datos = await respuesta.json();
+    const users = datos.users;
+    for (const usuario of users) {
+        usuarios.push(usuario);
+    }
+
+}
+
+async function obtenerDB() {
+    //* Trae los datos del archivo JSON  en un arreglo 'productos'
+    // En initProductos.js esta el arreglo declarado de manera global y el llamado de la funcion.
+
+    const URLJSON = '/db/DB.json';
+    const respuesta = await (fetch(URLJSON));
+    const datos = await respuesta.json();
+    const vehiculos = datos.vehiculos;
+    for (vehiculo of vehiculos) {
+        productos.push(vehiculo);
+    }
+}
+
 const aviso = () => {
     //* Alerta para saber donde esta el panel de Inicio de Sesion.
 
@@ -20,6 +48,7 @@ const aviso = () => {
 
 const asignarRol = () => {
     //* Asigna el rol del usuario (admin/user)
+
     let rol = localStorage.getItem('rol');
     usuario.classList.add(rol);
     usuario.removeAttribute('hidden');
@@ -87,6 +116,8 @@ const asignarRol = () => {
 };
 
 const asignarFtUsuario = () => {
+    //* Asigna la imagen del perfil en el DOM, segun sea el usuario.
+
     let foto = localStorage.getItem('foto');
 
 
@@ -98,6 +129,7 @@ const asignarFtUsuario = () => {
 
 const time = () => {
     //* Obtiene y renderiza la hora y el dia.
+
     const dia = document.getElementById('dia');
     const hora = document.getElementById('hora');
 
@@ -123,6 +155,7 @@ const agregarVehiculos = (...vehiculos) => {
 
 const renderizar = (listaVehiculos) => {
     //* Recibe un arreglo de Vehiculos, el cual sera renderizado en el index.html 
+
     asignarFtUsuario();
     asignarRol();
 
