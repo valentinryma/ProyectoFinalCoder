@@ -1,0 +1,24 @@
+{
+  "name": "proyecto-concesionaria",
+  "version": "1.0.0",
+  "description": "gestor de vehiculos + DOM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valentinryma/ProyectoFinalCoder.git"
+  },
+  "keywords": [
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "Valentin Rymaszewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valentinryma/ProyectoFinalCoder/issues"
+  },
+  "homepage": "https://github.com/valentinryma/ProyectoFinalCoder#readme"
+}
