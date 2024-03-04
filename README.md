@@ -15,7 +15,7 @@ Este proyecto en JavaScript es una herramienta básica para la administración d
 * Tutor:  [Ariel Annone](https://www.linkedin.com/in/ACoAADkTVQMBw3VwnJIgT6kzUiVTDQZgawwzlWI?lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3Bj6GsymK8TTGVl6SPUtCbzQ%3D%3D)
 
 **Por hacer:**
-- [x] Crear una base de datos relacional robusta y funcional. [Documentación]()
+- [x] Crear una base de datos relacional robusta y funcional. [Documentación](https://drive.google.com/drive/folders/1mUxW6QnVtVA5ydqt86a-VNNn_P82ngTG?usp=sharing)
 - [ ] Incorporar el Backend encargado de administrar la db y la lógica de la aplicación web
 - [ ] Incorporar:
 	- [ ] Rutas / Paths 
